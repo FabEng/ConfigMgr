@@ -3,7 +3,7 @@
     Run Admin Service examples.
 
 .DESCRIPTION
-    This script is intended to show examples on how to interact with the Configuration Manager Administratin Service as a REST-API.
+    This script is intended to show examples on how to interact with the Configuration Manager Administration Service as a REST-API.
 
 .EXAMPLE
     .\RunAdminServiceExamples.ps1
@@ -48,10 +48,10 @@ function Get-CMDevice {
     param (
         [string]$Name
     )
-    $uri = "https://$adminSrvProv/AdminService/v1.0/Device/?`$filter=Name eq `'$($Name)`'"
+    $Uri = "https://$adminSrvProv/AdminService/v1.0/Device/?`$filter=Name eq `'$($Name)`'"
  
     # Expected response code: [200] reason [OK]
-    Invoke-RestMethod -Method "Get" -Uri $uri -UseDefaultCredentials
+    Invoke-RestMethod -Method "Get" -Uri $Uri -UseDefaultCredentials
 }
 
 # Get custom properties for a single device
@@ -67,16 +67,16 @@ function Get-CMDeviceExtensions {
     )
  
     if (![string]::IsNullOrEmpty($ResourceID)) {
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($resourceID)/AdminService.GetExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.GetExtensionData"
     }
  
     if (![string]::IsNullOrEmpty($DeviceName)) {
         $Device = Get-CMDevice -Name $DeviceName
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.GetExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.GetExtensionData"
     }
  
     # Expected response code: [200] reason [OK]
-    Invoke-RestMethod -Method "Get" -Uri $uri -UseDefaultCredentials
+    Invoke-RestMethod -Method "Get" -Uri $Uri -UseDefaultCredentials
 }
 
 # Set a list of custom properties (create or update)
@@ -106,18 +106,18 @@ function Set-CMDeviceExtensions {
     )
      
     if (![string]::IsNullOrEmpty($ResourceID)) {
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.SetExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.SetExtensionData"
     }
  
     if (![string]::IsNullOrEmpty($DeviceName)) {
         $Device = Get-CMDevice -Name $DeviceName
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.SetExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.SetExtensionData"
     }
  
     $jsonBody = ConvertTo-Json -InputObject $Body
  
     # Expected response code: [200] reason [OK]
-    Invoke-WebRequest -Method "Post" -Uri $uri -UseDefaultCredentials -Body $jsonBody -ContentType "application/json"
+    Invoke-WebRequest -Method "Post" -Uri $Uri -UseDefaultCredentials -Body $jsonBody -ContentType "application/json"
 }
 
 # Delete one or more dedicated custom properties
@@ -144,18 +144,18 @@ function Remove-CMDeviceExtensions {
     )
      
     if (![string]::IsNullOrEmpty($ResourceID)) {
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.DeleteCustomProperties"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.DeleteCustomProperties"
     }
  
     if (![string]::IsNullOrEmpty($DeviceName)) {
         $Device = Get-CMDevice -Name $DeviceName
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.DeleteCustomProperties"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.DeleteCustomProperties"
     }
  
     $jsonBody = ConvertTo-Json -InputObject $Body
      
     # Expected response code: [204] reason [No Content]
-    Invoke-WebRequest -Method "Post" -Uri $uri -UseDefaultCredentials -Body $jsonBody -ContentType "application/json"
+    Invoke-WebRequest -Method "Post" -Uri $Uri -UseDefaultCredentials -Body $jsonBody -ContentType "application/json"
 }
 
 # Delete all custom properties for a single device
@@ -178,16 +178,16 @@ function Remove-AllCMDeviceExtensions {
     )
      
     if (![string]::IsNullOrEmpty($ResourceID)) {
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.DeleteExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($ResourceID)/AdminService.DeleteExtensionData"
     }
  
     if (![string]::IsNullOrEmpty($DeviceName)) {
         $Device = Get-CMDevice -Name $DeviceName
-        $uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.DeleteExtensionData"
+        $Uri = "https://$adminSrvProv/AdminService/v1.0/Device($($Device.value.MachineId))/AdminService.DeleteExtensionData"
     }
  
     # Expected response code: [204] reason [No Content]
-    Invoke-WebRequest -Method "Post" -Uri $uri -UseDefaultCredentials
+    Invoke-WebRequest -Method "Post" -Uri $Uri -UseDefaultCredentials
 }
 
 # ---------------------- Main starts here ----------------------

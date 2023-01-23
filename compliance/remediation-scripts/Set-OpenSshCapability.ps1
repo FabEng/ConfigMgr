@@ -1,10 +1,10 @@
 <#
 .SYNOPSIS
-    Add Open SSH Server capability.
+    Add Open SSH server capability.
 
 .DESCRIPTION
     This script is intended to be used as a ConfigMgr remediation script.
-    It adds the Open SSH Server capability and returns a boolean value.
+    It adds the Open SSH server capability and returns a boolean value.
 
 .EXAMPLE
     .\Set-OpenSshCapability.ps1

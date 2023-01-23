@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Get .NET 4 Version.
+    Get .NET 4 version.
 
 .DESCRIPTION
     This script is intended to be used as a ConfigMgr discovery script.
@@ -21,7 +21,7 @@ try {
     Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full" -Name "Version"
 }
 catch {
-    # Error while detection version 
+    # Error while detecting a version 
     # Possible reasons: the .Net 4 regkey does not exist
     Write-Error "Error while getting registry key value"
 }

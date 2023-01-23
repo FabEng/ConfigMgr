@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-    Remediate GPO cache health
+    Remediate GPO cache health.
 
 .DESCRIPTION
     This script is intended to be used as a ConfigMgr remediation script.
@@ -172,7 +172,7 @@ else {
     $logContent += "Machine POL file is healthy and current, nothing to do!"
 }
 
-# User registry POL file is corrup, delete and GPUpdate
+# User registry POL file is corrupt, delete and GPUpdate
 if ($userPOLFileOK -ne $true) {
     try {
         $logContent += "Deleting user POL file.."

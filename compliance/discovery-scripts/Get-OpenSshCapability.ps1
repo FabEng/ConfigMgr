@@ -1,10 +1,10 @@
 <#
 .SYNOPSIS
-    Get Open SSH Server capability.
+    Get Open SSH server capability.
 
 .DESCRIPTION
     This script is intended to be used as a ConfigMgr discovery script.
-    It determines the installation status of Open SSH Server capability and returns a boolean value.
+    It determines the installation status of Open SSH server capability and returns a boolean value.
 
 .EXAMPLE
     .\Get-OpenSshCapability.ps1
